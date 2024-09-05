@@ -1,19 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>insert pass</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <input type="password" id="password" placeholder="enter pass key for x..."/>
-    <input type="button" value="submit" name="login" onclick="checkPass(document.getElementById('password').value)"/>
+    <title>Countdown</title>
+    <meta name="viewport" content="width=320; initial-scale=1.0;">
+    <style>
+      * {
+        font-family: roboto;
+        font-weight: bold;
+        color: red;
+        }
+      
+      body {
+        background-color: black;
+        }
+      
+      input[type=text] {
+        background-color: black;
+        box-sizing: border-box;
+        border: 3px solid #F00;
+        outline: none;
+        border-radius: 3px;
+        width: 30;
+        }
+      
+      button {
+        background-color: black;
+        box-sizing: border-box;
+        border: 3px solid #F00;
+        outline: none;
+        border-radius: 3px;
+        width: 30;
+        }
+      
+    </style>
   </head>
   <body>
-    <main>
-        <h1>check pass</h1>
-    </main>
-    <script src="index.js"></script>
+    <h1>Safe Check</h1>
+    <ul id="entries"></ul>
+    <button onClick="zkus();">Zkusit</button>
   </body>
+  
+  <script>
+      const jmena_hesla = {
+        "Babu": "nelituju",
+        "Maty": "pes",
+        "Srna": "postupka",
+        "Fox": "daven",
+        "Kecka": "hovna",
+        "Suri": "udlat",
+        "Bystřa": "láska",
+        "Klárka": "divočina",
+        "Sušenka": "blebleble",
+        "Pája": "čiapka",
+        "Martin": "robot",
+        "Wazi": "waziho syndrom",
+        }
+      
+      function clean_input(text) {
+          return text.toLowerCase().trim().replace("á", "а").replace("č", "c");
+          }
+      
+      function zkus() {
+        console.log("zkusit");
+        
+        let ok = true;
+        for (const [key, value] of Object.entries(jmena_hesla)) {
+          
+          if (clean_input(document.getElementById(key).value) != clean_input(value)) {
+            console.log("NOTEQ:", clean_input(document.getElementById(key).value), clean_input(value));
+            ok = false;
+            }
+          }
+        
+        if (ok) {
+          alert("Správně!");
+          window.location.href = "example.com";
+          }
+        else {
+          alert("Špatně!");
+          }
+        }
+      
+      var list = document.getElementById("entries");
+      for (const [key, value] of Object.entries(jmena_hesla)) {
+        console.log(key, value);
+        var div = document.createElement("div");
+        div.innerHTML = "<li style='margin-top: 5px; list-style-type: none;'><a>" + key + "</a> <br><input id=" + key + " type='text'></li>";
+        list.appendChild(div);
+        }
+      
+    </script>
 </html>
