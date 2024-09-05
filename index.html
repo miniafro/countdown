@@ -48,7 +48,7 @@
         "Fox": "daven",
         "Kecka": "hovna",
         "Suri": "udlat",
-        "Bystřa": "láska",
+        "Bystřa": "laska",
         "Klárka": "divočina",
         "Sušenka": "blebleble",
         "Pája": "čiapka",
@@ -57,18 +57,27 @@
         }
       
       function clean_input(text) {
-          return text.toLowerCase().trim().replace("á", "а").replace("č", "c");
+          return text.toLowerCase().trim().replace("á", "а").replace("č", "c").trim();
           }
+      
+      // console.log("DJASIOHDIOUSAH");
+      // if ('laska' === 'lаska') {
+        // console.log("JEBAT");
+        // }
       
       function zkus() {
         console.log("zkusit");
         
         let ok = true;
         for (const [key, value] of Object.entries(jmena_hesla)) {
+          entry = document.getElementById(key);
           
-          if (clean_input(document.getElementById(key).value) != clean_input(value)) {
-            console.log("NOTEQ:", clean_input(document.getElementById(key).value), clean_input(value));
+          if (clean_input(entry.value) !== clean_input(value)) {
+            console.log("'"+entry.value+"'", "'"+value+"'", "NOTEQ:", "'"+clean_input(document.getElementById(key).value)+"'", "'"+clean_input(value)+"'");
             ok = false;
+            }
+          else {
+            entry.style;
             }
           }
         
