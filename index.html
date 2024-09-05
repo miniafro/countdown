@@ -38,6 +38,7 @@
     <h1>Safe Check</h1>
     <ul id="entries"></ul>
     <button onClick="zkus();">Zkusit</button>
+    <div id="mrdkaholder"></div>
   </body>
   
   <script>
@@ -70,9 +71,18 @@
           if (clean_input(entry.value) !== clean_input(value)) {
             console.log("'"+entry.value+"'", "'"+value+"'", "NOTEQ:", "'"+clean_input(document.getElementById(key).value)+"'", "'"+clean_input(value)+"'");
             ok = false;
+            entry.style.border = "3px solid #F00";
             }
           else {
-            entry.style;
+            entry.style.border = "3px solid #3DA53D";
+            entry.style.color = "#3DA53D";
+            try {
+              entry.parentElement.querySelector(".name").style.color = "#3DA53D";
+              }
+            catch (error) {
+              // tak nic no
+              console.log(error);
+              }
             }
           }
         
@@ -89,9 +99,14 @@
       for (const [key, value] of Object.entries(jmena_hesla)) {
         console.log(key, value);
         var div = document.createElement("div");
-        div.innerHTML = "<li style='margin-top: 5px; list-style-type: none;'><a>" + key + "</a> <br><input id=" + key + " type='text'></li>";
+        div.innerHTML = "<li style='margin-top: 5px; list-style-type: none;'><a class='name'>" + key + "</a> <br><input id=" + key + " type='text'></li>";
         list.appendChild(div);
         }
+      
+      
+      let mrdka = document.createElement("div");
+      mrdka.innerHTML = "<iframe id='ytplayer' type='text/html' width='720' height='540' src='https://www.youtube.com/embed/Up7jXRCNIpk?autoplay=1&controls=0&fs=0&loop=1&color=white&iv_load_policy=3' frameborder='0' allowfullscreen>"
+      document.getElementById("mrdkaholder").appendChild(mrdka);
       
     </script>
 </html>
